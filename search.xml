@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>選擇權履約價種類</title>
+    <url>/post/%E4%BD%95%E8%AC%82%E9%81%B8%E6%93%87%E6%AC%8A%E7%9A%84%E5%B1%A5%E7%B4%84%E5%83%B9/</url>
+    <content><![CDATA[<h5 id="對買權來講"><a href="#對買權來講" class="headerlink" title="對買權來講"></a>對買權來講</h5><p>如果目前履約價高於對應的現貨標的價格則是  <strong>價外</strong></p>
+<p>如果目前履約價底於對應的現貨標的價格則是  <strong>價內</strong></p>
+<h5 id="對賣權來講"><a href="#對賣權來講" class="headerlink" title="對賣權來講"></a>對賣權來講</h5><p>如果目前履約價高於對應的現貨標的價格則是  <strong>價內</strong></p>
+<p>如果目前履約價底於對應的現貨標的價格則是  <strong>價外</strong></p>
+<p>而不管對買賣權，如果履約價接近現貨價格的位置則為 <strong>價平</strong></p>
+]]></content>
+      <categories>
+        <category>選擇權入門</category>
+      </categories>
+      <tags>
+        <tag>選擇權</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>選擇權簡介</title>
     <url>/post/%E9%81%B8%E6%93%87%E6%AC%8A%E7%B0%A1%E4%BB%8B/</url>
-    <content><![CDATA[<p><img src="https://cdn.staticaly.com/gh/opsuperman/picx-images-hosting@master/20230330/light.63dprqzy6ck0.webp" alt="option"><br>選擇權是一種金融衍生工具，通常被用來對冲風險或者進行投機。選擇權的價格是由基礎資產（例如股票、商品、外匯等）的價格和一些其他因素決定的。在這篇文章中，我們將介紹選擇權的基本概念、特點和種類。</p>
+    <content><![CDATA[<!-- ![option](https://cdn.staticaly.com/gh/opsuperman/picx-images-hosting@master/20230330/light.63dprqzy6ck0.webp) -->
+<p>選擇權是一種金融衍生工具，通常被用來對冲風險或者進行投機。選擇權的價格是由基礎資產（例如股票、商品、外匯等）的價格和一些其他因素決定的。在這篇文章中，我們將介紹選擇權的基本概念、特點和種類。</p>
 <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>選擇權是一種買方和賣方之間的合約，買方支付給賣方一定的費用，這個費用通常是基於期權的價值和市場上利率等因素計算的，在合約期間以權利金的買賣來表彰雙方的權利與義務。<br>當到了合約的到期日，雙方就會有以下的權益跟義務。</p>
 <h5 id="在選擇權到期日買方的權益和義務"><a href="#在選擇權到期日買方的權益和義務" class="headerlink" title="在選擇權到期日買方的權益和義務"></a>在選擇權到期日買方的權益和義務</h5><ul>
 <li><p>權益：買方可以選擇是否行使選擇權，如果行使，買方可以以行使價格買入或賣出基礎資產。</p>
@@ -24,7 +41,6 @@
       </categories>
       <tags>
         <tag>選擇權</tag>
-        <tag>基礎知識</tag>
       </tags>
   </entry>
 </search>
