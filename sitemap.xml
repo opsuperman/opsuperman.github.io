@@ -4,16 +4,7 @@
   <url>
     <loc>https://blog.optionsuperman.com/posts/3742663632/</loc>
     
-    <lastmod>2023-04-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.optionsuperman.com/posts/146350275/</loc>
-    
-    <lastmod>2023-04-06</lastmod>
+    <lastmod>2023-10-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -22,7 +13,16 @@
   <url>
     <loc>https://blog.optionsuperman.com/posts/1564230905/</loc>
     
-    <lastmod>2023-04-06</lastmod>
+    <lastmod>2023-10-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.optionsuperman.com/posts/146350275/</loc>
+    
+    <lastmod>2023-10-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -49,7 +49,7 @@
 
   <url>
     <loc>https://blog.optionsuperman.com/</loc>
-    <lastmod>2023-04-06</lastmod>
+    <lastmod>2023-10-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -57,7 +57,7 @@
   
   <url>
     <loc>https://blog.optionsuperman.com/tags/%E9%81%B8%E6%93%87%E6%AC%8A/</loc>
-    <lastmod>2023-04-06</lastmod>
+    <lastmod>2023-10-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -66,7 +66,7 @@
   
   <url>
     <loc>https://blog.optionsuperman.com/categories/optionbasic/</loc>
-    <lastmod>2023-04-06</lastmod>
+    <lastmod>2023-10-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

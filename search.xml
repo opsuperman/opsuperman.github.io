@@ -40,7 +40,7 @@
   <entry>
     <title>選擇權簡介</title>
     <url>/posts/146350275/</url>
-    <content><![CDATA[<!-- ![option](https://cdn.staticaly.com/gh/opsuperman/picx-images-hosting@master/20230330/light.63dprqzy6ck0.webp) -->
+    <content><![CDATA[<!-- ![option](https://raw.githubusercontent.com/opsuperman/picx-images-hosting/master/20230330/light.63dprqzy6ck0.webp) -->
 
 <p>選擇權是一種金融衍生工具，通常被用來對冲風險或者進行投機。選擇權的價格是由基礎資產（例如股票、商品、外匯等）的價格和一些其他因素決定的。在這篇文章中，我們將介紹選擇權的基本概念、特點和種類。</p>
 <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>選擇權是一種買方和賣方之間的合約，買方支付給賣方一定的費用，這個費用通常是基於期權的價值和市場上利率等因素計算的，在合約期間以權利金的買賣來表彰雙方的權利與義務。<br>當到了合約的到期日，雙方就會有以下的權益跟義務。</p>
