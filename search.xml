@@ -1,19 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>選擇權履約價種類</title>
-    <url>/posts/3742663632/</url>
-    <content><![CDATA[<h3 id="對買權來講"><a href="#對買權來講" class="headerlink" title="對買權來講"></a>對買權來講</h3><p>如果目前履約價高於對應的現貨標的價格則是  <strong>價外</strong></p>
-<p>如果目前履約價底於對應的現貨標的價格則是  <strong>價內</strong></p>
-<h3 id="對賣權來講"><a href="#對賣權來講" class="headerlink" title="對賣權來講"></a>對賣權來講</h3><p>如果目前履約價高於對應的現貨標的價格則是  <strong>價內</strong></p>
-<p>如果目前履約價底於對應的現貨標的價格則是  <strong>價外</strong></p>
-<p>而不管對買賣權，如果履約價接近現貨價格的位置則為 <strong>價平</strong></p>
-]]></content>
+    <title>選擇權策略開發-缺乏歷史價格的挑戰</title>
+    <url>/posts/option-historical-prices-problem/</url>
+    <content><![CDATA[<h2 id="🤔歷史資料缺失問題"><a href="#🤔歷史資料缺失問題" class="headerlink" title="🤔歷史資料缺失問題"></a>🤔歷史資料缺失問題</h2><p>在做量化策略的時候，歷史資料一直是在回測上很重要的基礎，但當你爬了期交所公開資料下來準備寫選擇權交易策略時，會發現一個令人心碎的事實：歷史數據中很常都沒有價格！</p>
+<p>選擇權價格受多種因素影響，包括履約價、到期日、市場波動性…等。但在量化分析上最令人頭疼的是，並非所有的選擇權都像熱門股票那樣，時時刻刻都有買賣。有些選擇權可能只有零星的交易，或者根本沒有交易。這就是為什麼，當你試圖撈取歷史數據時，會發現某些時段的數據是缺失的。這樣的情況下，如何做選擇權的回測呢？在這篇文章中，我們會深入探討這一棘手的問題，並揭示我們是如何一步步解決它的。</p>
+<h2 id="選擇權策略案例"><a href="#選擇權策略案例" class="headerlink" title="選擇權策略案例"></a>選擇權策略案例</h2><blockquote>
+<p>舉個實例: 假設你有一隻一分K月選策略想在2021&#x2F;11&#x2F;22 23:17:00 用履約價18400進場sell put，並且在2021&#x2F;11&#x2F;23 00:57:00出場</p>
+</blockquote>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E9%81%B8%E6%93%87%E6%AC%8A%E7%AD%96%E7%95%A5%E9%96%8B%E7%99%BC-%E7%BC%BA%E4%B9%8F%E6%AD%B7%E5%8F%B2%E5%83%B9%E6%A0%BC%E7%9A%84%E6%8C%91%E6%88%B0/multicharts%E7%AD%96%E7%95%A5%E7%AF%84%E4%BE%8B%E5%9C%96.su0vfphd3q8.webp" alt="multicharts策略範例圖" title="multicharts策略範例圖"></p>
+<p>第一步就要去找歷史資料這兩個時間點的價格，會發現期交所原始資料18400 Put 11&#x2F;12下午盤到11&#x2F;23開盤這時間有的成交價格資料就只有藍色區塊這幾筆。</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E9%81%B8%E6%93%87%E6%AC%8A%E7%AD%96%E7%95%A5%E9%96%8B%E7%99%BC-%E7%BC%BA%E4%B9%8F%E6%AD%B7%E5%8F%B2%E5%83%B9%E6%A0%BC%E7%9A%84%E6%8C%91%E6%88%B0/%E5%8E%9F%E5%A7%8B%E5%83%B9%E6%A0%BC%E8%B3%87%E6%96%99.2ag7pihjsgpw.webp" alt="原始價格資料" title="原始價格資料"></p>
+<h2 id="淺談補選擇權價格缺值方法"><a href="#淺談補選擇權價格缺值方法" class="headerlink" title="淺談補選擇權價格缺值方法:"></a>淺談補選擇權價格缺值方法:</h2><p>用剛剛的策略例子，當你決定進場交易，突然發現沒有資料可供參考。</p>
+<p><strong>進場時間的原始資料</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">日期</th>
+<th align="center">時間</th>
+<th align="center">履約價</th>
+<th align="center">PUT價格</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2021&#x2F;11&#x2F;22</td>
+<td align="center">23:17:00</td>
+<td align="center">18400</td>
+<td align="center">無</td>
+</tr>
+</tbody></table>
+<p><strong>出場時間的原始資料</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">日期</th>
+<th align="center">時間</th>
+<th align="center">履約價</th>
+<th align="center">PUT價格</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2021&#x2F;11&#x2F;23</td>
+<td align="center">00:57:00</td>
+<td align="center">18400</td>
+<td align="center">無</td>
+</tr>
+</tbody></table>
+<p>當發現都沒有put的價格資料，通常第一個直覺就是去內外插，或是往前找(ffill)或往後找(bfill)價格 </p>
+<p><strong>假設我們採用往後的方式:</strong></p>
+<p>進場價格就是 : 570</p>
+<p>出場價格就是 : 705</p>
+<p><strong>假設我們採用往前的方式:</strong></p>
+<p>進場價格就是 : 590</p>
+<p>出場價格就是 : 570</p>
+<p>報酬很明顯有很大的落差，一個賺錢另一個變成賠錢，因此怎麼回補缺值數據是一個需要仔細研究的事。</p>
+<p>我們先看早盤靠近價平附近的原始價格，比如早盤履約價17700的Put原始價格</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E9%81%B8%E6%93%87%E6%AC%8A%E7%AD%96%E7%95%A5%E9%96%8B%E7%99%BC-%E7%BC%BA%E4%B9%8F%E6%AD%B7%E5%8F%B2%E5%83%B9%E6%A0%BC%E7%9A%84%E6%8C%91%E6%88%B0/%E6%97%A9%E7%9B%A417700%E5%83%B9%E6%A0%BC%E5%8E%9F%E5%A7%8B.5023kdfpqvw0.webp" alt="早盤17700 put價格原始資料" title="早盤17700 put價格原始資料"></p>
+<p>我們也把微笑曲線畫出來，隨便挑某一分鐘來看，會看到其實缺很多價格<br><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E9%81%B8%E6%93%87%E6%AC%8A%E7%AD%96%E7%95%A5%E9%96%8B%E7%99%BC-%E7%BC%BA%E4%B9%8F%E6%AD%B7%E5%8F%B2%E5%83%B9%E6%A0%BC%E7%9A%84%E6%8C%91%E6%88%B0/%E6%97%A9%E7%9B%A4%E5%8E%9F%E5%A7%8BStrikeIV%E5%9C%96.5af6g750b5g0.webp" alt="早盤微笑曲線" title="早盤微笑曲線"></p>
+<h3 id="如何修正這些缺口？答案可能要從隱含波動率和選擇權模型的方法著手"><a href="#如何修正這些缺口？答案可能要從隱含波動率和選擇權模型的方法著手" class="headerlink" title="如何修正這些缺口？答案可能要從隱含波動率和選擇權模型的方法著手"></a>如何修正這些缺口？答案可能要從隱含波動率和選擇權模型的方法著手</h3><p>通常選擇權要模擬數據，會先使用沒有缺失的部分，也就是僅有的一些數據算出已知的隱含波動率。</p>
+<p>接下來就是利用一些模型或是機器學習去Fit參數，想辦法作出可能的價格走勢。</p>
+<p>如下圖所示，藍色實線是原始的歷史價格，而我用橘色虛線表示我們算出來的預估價格，我們把剛剛的履約價17700的Put缺失的價格部分填滿，而當我們建立出一個可以用的連續價格走勢，接下來就比較可以好好的開始寫策略進行回測。</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E9%81%B8%E6%93%87%E6%AC%8A%E7%AD%96%E7%95%A5%E9%96%8B%E7%99%BC-%E7%BC%BA%E4%B9%8F%E6%AD%B7%E5%8F%B2%E5%83%B9%E6%A0%BC%E7%9A%84%E6%8C%91%E6%88%B0/%E6%97%A9%E7%9B%A417700%E6%AF%94%E8%BC%83%E5%9C%96.44w70m1jaq6.webp" alt="早盤17700比較圖" title="早盤17700比較圖"></p>
+<p>不過建立的模型也有很多不同的方式，筆者試過多種不同方法，但每個方法推估出來的數字都會因為選擇的模型與輸入的模型參數跟訓練的方法而有不同，因此計算出來的價格也會不同。</p>
+<h3 id="對估計值的理解"><a href="#對估計值的理解" class="headerlink" title="對估計值的理解"></a>對估計值的理解</h3><p><strong>因此要知道只要是有缺失的價格，算出來的估計價格其實並不精確</strong>，不同人算出來的也會不同，因為沒有價格資料的歷史就沒有辦法去對標準答案了。</p>
+<p>不過因為回測需要這些價格，因此 <strong>價格有值參考總比沒有值參考好</strong></p>
+<p>在回測上，有值來參考至少還可以回測，不然也回測不了，只是要注意他只是估計的理論值。</p>
+<p>回到剛剛的策略，履約價18400 整個滿滿都是缺失值，幾乎看不到原始歷史價格的藍線，我畫出來幾乎是完全空白，而透過前面訓練出來的模型，就可以去做出18400的估計價格</p>
+<p>下圖是18400 put 夜盤的估計價格走勢圖:</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E9%81%B8%E6%93%87%E6%AC%8A%E7%AD%96%E7%95%A5%E9%96%8B%E7%99%BC-%E7%BC%BA%E4%B9%8F%E6%AD%B7%E5%8F%B2%E5%83%B9%E6%A0%BC%E7%9A%84%E6%8C%91%E6%88%B0/%E4%B8%8B%E5%8D%88%E7%9B%A418400put%E5%83%B9%E6%A0%BC.35odlgn2sew0.webp" alt="下午盤18400put價格" title="下午盤18400put價格"></p>
+<p>雖然有時候我們也很難知道到底這樣算出來的價格到底誤差多少，</p>
+<p>不過如果我們去對應相同時間期貨的走勢，正常來講put的圖形應該會跟台指期的漲跌呈現一種反向的關西</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E9%81%B8%E6%93%87%E6%AC%8A%E7%AD%96%E7%95%A5%E9%96%8B%E7%99%BC-%E7%BC%BA%E4%B9%8F%E6%AD%B7%E5%8F%B2%E5%83%B9%E6%A0%BC%E7%9A%84%E6%8C%91%E6%88%B0/%E5%B0%8D%E6%87%89%E5%8F%B0%E6%8C%87%E6%9C%9F%E8%B5%B0%E5%8B%A2%E5%9C%96.3pjtezuenic0.webp" alt="對應台指期走勢圖" title="對應台指期走勢圖"></p>
+<p>從上圖就可以看得出來，對應的時間確實有一種反向的關西。</p>
+<p>所以剛剛那支進場sell put的策略，我們就可以有一點點依據，這邊剛好是put漲了一段，所以我們可以計算這筆交易可能會賺賠多少了。</p>
+<h2 id="實用工具-選擇權超人回測平台"><a href="#實用工具-選擇權超人回測平台" class="headerlink" title="實用工具-選擇權超人回測平台"></a>實用工具-選擇權超人回測平台</h2><p>當然處理複雜的資料是很惱人的，不過好消息是選擇權超人的回測平台有盡可能的把資料給整理起來，如果不想自己處理資料，可以參考使用這個工具，讓你簡單運用multicharts就可以讓你更快速的開發選擇權策略。</p>
+<div class="btn-center" style="margin-top:20px;margin-bottom:20px;" >
+<a class="btn-beautify outline center orange larger" href="https://blog.optionsuperman.com/posts/options-trading-backtesting-guide/" 
+  title="關於回測平台的使用介紹"><i class="far fa-hand-point-right"></i><span>關於回測平台的使用介紹</span></a>
+</div>
+
+
+
+<h2 id="📌選擇權策略開發要點："><a href="#📌選擇權策略開發要點：" class="headerlink" title="📌選擇權策略開發要點："></a>📌選擇權策略開發要點：</h2><p>而因為很多缺失值，所以有幾個在開發策略上關於缺失值的部分跟大家分享。<br>第一個就是</p>
+<h3 id="1-避開下午剛開盤"><a href="#1-避開下午剛開盤" class="headerlink" title="1.避開下午剛開盤"></a>1.避開下午剛開盤</h3><p>這是未填入估計值的原始資料，下午三點剛開盤的前幾分鐘，我們隨便找一天的一分K，如圖，這一分鐘內幾乎都是沒有價格的狀態(NaN表示沒價格)。<br><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E9%81%B8%E6%93%87%E6%AC%8A%E7%AD%96%E7%95%A5%E9%96%8B%E7%99%BC-%E7%BC%BA%E4%B9%8F%E6%AD%B7%E5%8F%B2%E5%83%B9%E6%A0%BC%E7%9A%84%E6%8C%91%E6%88%B0/%E4%B8%8B%E5%8D%88%E4%B8%89%E9%BB%9E%E5%89%9B%E9%96%8B%E7%9B%A4.4v9l8sbufe60.webp" alt="選擇權下午三點剛開盤價格" title="選擇權下午三點剛開盤價格"></p>
+<h3 id="2-不要使用太多深價內或深價外"><a href="#2-不要使用太多深價內或深價外" class="headerlink" title="2.不要使用太多深價內或深價外"></a>2.不要使用太多深價內或深價外</h3><p>價平附近因為資料點足夠多，所以大部分不同的預估方法算出來的價格比較不會差太多。</p>
+<p>即使經過填補，仍建議在策略開發中避免使用沒有價格的區域，會有估計值比例比較高的問題。</p>
+<p>比如出場獲利很大的一大段就會很容易用到很遠的履約價價格，或是進場用了很深價內或是價外的值做進場。</p>
+<h3 id="3-注意使用估計值的比例與完全缺失的比例"><a href="#3-注意使用估計值的比例與完全缺失的比例" class="headerlink" title="3.注意使用估計值的比例與完全缺失的比例"></a>3.注意使用估計值的比例與完全缺失的比例</h3><p>在選擇權超人回測績效報告上，我們有把所有交易的價格是使用理論預估值的比例列出來，<br>比如你有500筆進場跟500筆出場，而裡面有100筆價格不是真實的歷史價格而是理論的預估值，那這個比例就是10%</p>
+<p>這樣你就知道你這支策略是不是用了太多的價格都是估計值，這個比例越高，回測出來的績效越不準確。</p>
+<p>而同樣的，有些地方是真的沒有資料，並且非常難以補到的，我們也會列出來他占你交易的比例多少。<br>當抓不到價格，我們回測時會跳過計算這筆交易。</p>
+<p>像下圖雖然我做出一隻風報比不錯的策略，但是估計值的比例高到82.2%，表示我進出場可能使用到非常多的深度價內或價外的價格，因此我會知道他回測出來的績效可能要打很大的折扣，這支策略可能不那麼穩定。</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E9%81%B8%E6%93%87%E6%AC%8A%E7%AD%96%E7%95%A5%E9%96%8B%E7%99%BC-%E7%BC%BA%E4%B9%8F%E6%AD%B7%E5%8F%B2%E5%83%B9%E6%A0%BC%E7%9A%84%E6%8C%91%E6%88%B0/%E6%8E%A1%E7%94%A8%E7%90%86%E8%AB%96%E5%83%B9%E6%AF%94%E4%BE%8B.flk1stkm4qg.webp" alt="採用理論價比例" title="採用理論價比例"></p>
+<h2 id="歷史回測的新理解-理論價格的藝術與科學"><a href="#歷史回測的新理解-理論價格的藝術與科學" class="headerlink" title="歷史回測的新理解-理論價格的藝術與科學"></a>歷史回測的新理解-理論價格的藝術與科學</h2><p>做策略的開發猶如從歷史資料中尋找智慧與寶藏。在這個過程中，像極了對過去考古題的解讀與探索，並且期待透過過往的歷史經驗，預測未知的未來。</p>
+<p>在期貨或股票的回測中，量化開發者很習慣要求資料的完整性，不允許缺失或不確定性。因為資料的準確性是量化分析成功的關鍵之一。然而，當我們深入選擇權的世界，這種想法卻受到了挑戰。在這裡，歷史一旦成為過去，某些資料的缺失是無法逆轉的事實。面對這樣的現實，我們得學會自己去設計與填補那些空白，創造一個完整的歷史理論資料。</p>
+<p>理論價格，從本質上來看，就是一種估計值，它與實際價格之間存在著固有的誤差。這誤差的大小，也是可以深入研究的主題了。沒有絕對的答案，只有逼近真實的技巧。在此，我們也誠摯地歡迎所有的高手，一同交流與指教有沒有更準確的作法，或者對我們計算出來的價格提出質疑，讓我們有更好的改進空間，也可以一起探討如何能更加接近那真實的價格之方法。</p>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結:"></a>總結:</h2><p>在進行選擇權策略的開發時，<font color=#008000>盡量注意估計值比例，避開剛開盤或是冷門交易時間的進出場</font>，這樣回測起來會比較貼近真實歷史價格狀況。</p>
+<p>如果你不想處理繁瑣的資料可以使用選擇權超人的回測工具，此工具已經為你解決了資料缺失的困擾，且巧妙地填補了各種缺失的價格，並且讓你輕鬆用multicharts原本開發台指期交易策略的方式，就可以回測多種選擇權策略</p>
+<div class="btn-center" style="margin-top:60px;margin-bottom:60px;" >
+<a class="btn-beautify outline center blue larger" href="https://bit.ly/3Swrkbh" 
+  title="歡迎加入我們的交流討論群"><i class="far"></i><span>歡迎加入我們的交流討論群</span></a>
+</div>
+
+<hr>
+<div class="note warning flat"><p>資料來源:期交所公開資料<br>免責申明:投資有賺有賠，僅分享量化研究與過去歷史統計數據，不保證資料或結果之正確性，量化策略也都很容易有時效性，內容和意見僅供參考，並不構成投資建議或勸誘，請勿直接串接下單。讀者應當自行進行完整的研究，並在做出任何投資決策前，理性評估，為自己負責。</p>
+</div>]]></content>
       <categories>
-        <category>選擇權入門</category>
+        <category>選擇權程式交易</category>
       </categories>
       <tags>
         <tag>選擇權</tag>
+        <tag>程式交易</tag>
       </tags>
   </entry>
   <entry>
@@ -35,6 +131,96 @@
       </categories>
       <tags>
         <tag>選擇權</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>選擇權履約價種類</title>
+    <url>/posts/3742663632/</url>
+    <content><![CDATA[<h3 id="對買權來講"><a href="#對買權來講" class="headerlink" title="對買權來講"></a>對買權來講</h3><p>如果目前履約價高於對應的現貨標的價格則是  <strong>價外</strong></p>
+<p>如果目前履約價底於對應的現貨標的價格則是  <strong>價內</strong></p>
+<h3 id="對賣權來講"><a href="#對賣權來講" class="headerlink" title="對賣權來講"></a>對賣權來講</h3><p>如果目前履約價高於對應的現貨標的價格則是  <strong>價內</strong></p>
+<p>如果目前履約價底於對應的現貨標的價格則是  <strong>價外</strong></p>
+<p>而不管對買賣權，如果履約價接近現貨價格的位置則為 <strong>價平</strong></p>
+]]></content>
+      <categories>
+        <category>選擇權入門</category>
+      </categories>
+      <tags>
+        <tag>選擇權</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何程式交易選擇權-回測篇</title>
+    <url>/posts/options-trading-backtesting-guide/</url>
+    <content><![CDATA[<h1 id="🍬回測選擇權的作法"><a href="#🍬回測選擇權的作法" class="headerlink" title="🍬回測選擇權的作法"></a>🍬回測選擇權的作法</h1><p>選擇權一直是金融市場中一種重要的交易方式，可以做到不同於期貨這種單純線性的獲利方式，對於程式交易者來說，選擇權交易更是必須掌握的交易技能之一。</p>
+<p>過去程式交易者要做選擇權的程式交易門檻非常高，在回測上以及下單上，有太多的商品，以及複雜的資料需要提前去處理跟整併，包含多檔位需要抓價平，還有常常深價內外沒有資料，連續月選連續周選整合……等，而選擇權超人可以解決這個問題。</p>
+<blockquote>
+<p><font color=#008000>❤️‍🔥如何程式交易選擇權 ? 不如我們就用原本我們最熟悉的工具 Powerlanguage 以及 Multicharts。❤️‍🔥</font></p>
+</blockquote>
+<p>打開選擇權超人回測機。你只需要用原本就會的寫策略的方式，寫原本的策略。<br>寫完掛上輸出訊號的pla檔，然後透過選擇權超人回測機，他會自動轉成選擇權的回測。<mark class="hl-label purple">如果你已經有台指期的策略，你甚至連任何一行程式都不需要寫</mark> ，只需選取你要甚麼動作，比如是要 Sell Call 還是 Buy Call 做價差甚麼…然後是價內還是價外哪一檔，接著按個按鈕就可以看到選擇權的回測結果數據。</p>
+<p>我們的工具盡量讓你用原本就非常熟悉的Multicharts 以及powerlanguage，不用再去管選擇權的資料的處理，用原本的寫法寫好進出場，一鍵直接回測選擇權策略，再進而自動交易。</p>
+<h2 id="💈實際案例示範"><a href="#💈實際案例示範" class="headerlink" title="💈實際案例示範"></a>💈實際案例示範</h2><h3 id="1-準備好你的策略"><a href="#1-準備好你的策略" class="headerlink" title="1.準備好你的策略"></a>1.準備好你的策略</h3><p>首先寫好你的策略，比如我拿一隻過高就進場，破低就出場的簡單策略，powerlanguage語法如下 :</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/placode.png" alt="整個回測介面"></p>
+<p>我們先套在原始期貨上，看看績效曲線。<br><img src="https://raw.githubusercontent.com/opsuperman/picx-images-hosting/master/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/mc_backtest.14ha816ibpy8.webp" alt="簡單策略回測" title="簡單策略回測"></p>
+<h3 id="2-加上powerlanguage的輸出訊號"><a href="#2-加上powerlanguage的輸出訊號" class="headerlink" title="2.加上powerlanguage的輸出訊號"></a>2.加上powerlanguage的輸出訊號</h3><p>掛上選擇權超人專屬的輸出交易明細訊號，input參數填入要輸出的資料夾跟策略名稱，以及要週選還是月選，記得回測要開啟細部回測(使用1分K)</p>
+<img src="https://raw.githubusercontent.com/opsuperman/picx-images-hosting/master/如何程式交易選擇權/image.4yal84q7tcg0.webp" width="90%" height="60%">
+
+
+<h3 id="3-開啟選擇權超人回測平台，選擇模式跟對應的檔位"><a href="#3-開啟選擇權超人回測平台，選擇模式跟對應的檔位" class="headerlink" title="3.開啟選擇權超人回測平台，選擇模式跟對應的檔位"></a>3.開啟選擇權超人回測平台，選擇模式跟對應的檔位</h3><p>打開選擇權超人回測平台，右上角點選新增，找到剛剛策略輸出的文字檔，就會顯示出下面對應的策略名稱跟參數可以去做設定<br><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E6%95%B4%E5%80%8B%E5%9B%9E%E6%B8%AC%E4%BB%8B%E9%9D%A2.png" alt="整個回測介面"></p>
+<p>接下來就是你可以簡單的把原始策略的進出場當作一個訊號，假設我們用剛剛的簡單策略當例子，<br>剛剛的策略沒有空單所以就勾選不動作，而每次多單進場我就buy call 價平，出場就把選擇權的call平倉。<br>新增剛剛輸出的檔案後，這邊可以自由設定交易成本，並且下拉選單選擇好對應的訊號然後輸入0也就是價平的位置，如下圖這樣選單選好</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%9B%9E%E6%B8%AC%E7%AD%96%E7%95%A5%E5%9C%961.png" alt="回測的介面"></p>
+<p>接著按下回測，稍等一下就可以看到回測結果以及各種交易數據了</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%9B%9E%E6%B8%AC%E7%B8%BE%E6%95%88%E6%9B%B2%E7%B7%9A1.png" alt="回測績效曲線1"></p>
+<p>你可以用自己寫的Multicharts策略訊號自由的切換不同選擇權策略，腳位，檔位….</p>
+<p>比如某一隻的Multicharts策略，想要他空單訊號時先不動作，而多單訊號時<br>去buy call上面2檔，sell call上面5檔，buy put下面3檔，sell put上面2檔，並且手續費單邊設定2.5點，那我就是一樣透過下拉選單選擇對應的動作，然後填入對應的檔位如下圖設定</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%9B%9B%E8%85%B3%E8%A8%AD%E5%AE%9A.png" alt="選擇權四腳策略設定"></p>
+<p>接著一樣按下回測，就可以去看回測結果的數據了</p>
+<p><strong>複雜多口數策略做法也一樣</strong></p>
+<p>下圖是一隻的卡了不同濾網，不同進出口數，也有各自停損方法的網格策略，多單初始單為1口，接下來用3口3口的方式加碼，空單初始單5口，接下來用1口1口的方式加碼，如圖所示</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%A4%9A%E5%8F%A3%E6%95%B8%E8%AE%8A%E7%A2%BC%E7%AD%96%E7%95%A5MC%E5%9C%96.png" alt="多口數變碼策略MC圖"></p>
+<p>如果我又想要多空用不同的選擇權價差進場，我想要用周選</p>
+<p>當MC訊號是多單時，buy call 上面1檔 並且 sell put上面3檔</p>
+<p>當MC訊號是空單時，buy put  價平 並且 sell put下面4檔</p>
+<p>做法也會先掛好選擇權超人的powerlanguage輸出訊號在圖表上，<br>然後去到回測平台上，下拉選單選對應的檔位如圖<br><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%A4%9A%E5%8F%A3%E6%95%B8%E5%9B%9E%E6%B8%AC%E8%A8%AD%E5%AE%9A.png" alt="多口數回測設定"></p>
+<p>一樣按下回測等他回測完後，就會有結果可以從瀏覽看了</p>
+<h3 id="4-回測報告介紹"><a href="#4-回測報告介紹" class="headerlink" title="4.回測報告介紹"></a>4.回測報告介紹</h3><p>當回測完成後，瀏覽按鈕按下去就會呈現回測的報告了，<br>以下介紹主要的資訊區域</p>
+<h4 id="績效概要"><a href="#績效概要" class="headerlink" title="績效概要"></a>績效概要</h4><p>績效概要，主要是可以查看交易常見的基本的績效數據</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E7%B8%BE%E6%95%88%E6%A6%82%E8%A6%81.png" alt="績效概要"></p>
+<h4 id="績效圖"><a href="#績效圖" class="headerlink" title="績效圖"></a>績效圖</h4><p>績效圖是可以點按是否同時或獨立顯示多單訊號或是空單訊號的部分，並且可以跟原始的MC直接輸出的期貨訊號去做績效的比較</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E7%B8%BE%E6%95%88%E5%9C%96.png" alt="績效圖"></p>
+<h4 id="年-x2F-月-x2F-日-單筆-損益"><a href="#年-x2F-月-x2F-日-單筆-損益" class="headerlink" title="年&#x2F;月&#x2F;日(單筆) 損益"></a>年&#x2F;月&#x2F;日(單筆) 損益</h4><p>整理成對應周期的交易資料跟損益，例如年損益如圖</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%B9%B4%E6%90%8D%E7%9B%8A.png" alt="年損益"></p>
+<h4 id="成交明細"><a href="#成交明細" class="headerlink" title="成交明細"></a>成交明細</h4><p>這邊有細部的價格可以讓你去做mc訊號對應選擇權訊號進出場的核對</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E6%88%90%E4%BA%A4%E6%98%8E%E7%B4%B0.png" alt="成交明細"></p>
+<h3 id="5-回測投資組合，與觀看多策略疊加報告"><a href="#5-回測投資組合，與觀看多策略疊加報告" class="headerlink" title="5.回測投資組合，與觀看多策略疊加報告"></a>5.回測投資組合，與觀看多策略疊加報告</h3><p>交易常常會需要知道多策略的回測結果，利用回測報告區塊，過去的回測結果都有自動存下來，可以隨時查看</p>
+<p>這邊還可以利用獨特的投組功能，讓不同腳位，不管是周選還月選，多還空訊號，<br>都只要勾選要疊加的策略按右上角的疊加按鈕後都可以自由疊加策略組合來看績效。</p>
+<p>我們勾選這邊要疊加的策略如下圖:</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%9B%9E%E6%B8%AC%E5%A0%B1%E5%91%8A%E5%8D%80%E5%A1%8A%E5%8B%BE%E9%81%B8%E7%96%8A%E5%8A%A0.png" alt="回測報告區塊勾選疊加"></p>
+<p>稍微等待後就會產生疊加起來的績效報告了</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E7%96%8A%E5%8A%A0%E7%B8%BE%E6%95%88%E6%9B%B2%E7%B7%9A.png" alt="疊加績效曲線"></p>
+<p>以上就是利用multicharts搭配選擇權超人回測平台來回測選擇權的方法簡介</p>
+<h2 id="🔨設計自己的策略"><a href="#🔨設計自己的策略" class="headerlink" title="🔨設計自己的策略"></a>🔨設計自己的策略</h2><p><strong>接下來就是自己的道路了，發揮創意跟想像力吧</strong></p>
+<p>你可能可以…</p>
+<h4 id="1-針對選擇權開發專屬選擇權策略"><a href="#1-針對選擇權開發專屬選擇權策略" class="headerlink" title="1.針對選擇權開發專屬選擇權策略"></a>1.針對選擇權開發專屬選擇權策略</h4><p>比如專找一些高勝率的點去做買方，或是在時間價值流失比較快的地方比如快要結算去做賣方策略，或根據波動度，最大化的利用買賣方的優勢去做交易，想專作價差或是做跨式勒式….等都可以自由的設計。</p>
+<h4 id="2-讓交易的商品更多元化"><a href="#2-讓交易的商品更多元化" class="headerlink" title="2.讓交易的商品更多元化"></a>2.讓交易的商品更多元化</h4><p>如果只有交易台指，多了一個選擇權，是個可以針對盤勢有不一樣應對的工具，讓交易不再單一化。</p>
+<h4 id="3-讓原本的台指期策略直接優化提升🚀"><a href="#3-讓原本的台指期策略直接優化提升🚀" class="headerlink" title="3.讓原本的台指期策略直接優化提升🚀"></a>3.讓原本的台指期策略直接優化提升🚀</h4><p>用選擇權把你的原本台指策略風暴比拉高，或是某些策略改用選擇權打，這都是很值得花時間去研究的地方，也可以讓原本低勝率的台指期策略，利用選擇權特性，讓整體交易部位交易起來在被巴的時候的舒服程度做提升。</p>
+<h4 id="4-自動化的避險你需要的部位"><a href="#4-自動化的避險你需要的部位" class="headerlink" title="4.自動化的避險你需要的部位"></a>4.自動化的避險你需要的部位</h4><p>周末有時候留倉，或是有股票部位，都可以自動化的寫策略去用選擇權回測工具去分析如何避險。</p>
+<p><strong>想像力力就是你的超能力，動手回測來挖掘更多可行性吧</strong></p>
+<div class="btn-center" style="margin-top:60px;margin-bottom:60px;" >
+<a class="btn-beautify outline center blue larger" href="https://bit.ly/3Swrkbh" 
+  title="加入社群一起研究吧"><i class="far fa-hand-point-right"></i><span>加入社群一起研究吧</span></a>
+</div>
+
+
+<hr>
+<div class="note warning flat"><p>資料來源:期交所公開資料<br>免責申明:投資有賺有賠，僅分享量化研究與過去歷史統計數據，不保證資料或結果之正確性，量化策略也都很容易有時效性，內容和意見僅供參考，並不構成投資建議或勸誘，請勿直接串接下單。讀者應當自行進行完整的研究，並在做出任何投資決策前，理性評估，為自己負責。</p>
+</div>]]></content>
+      <categories>
+        <category>選擇權程式交易</category>
+      </categories>
+      <tags>
+        <tag>選擇權</tag>
+        <tag>程式交易</tag>
       </tags>
   </entry>
   <entry>

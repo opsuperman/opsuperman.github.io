@@ -1,3 +1,5 @@
+https://blog.optionsuperman.com/posts/options-trading-backtesting-guide/
+https://blog.optionsuperman.com/posts/option-historical-prices-problem/
 https://blog.optionsuperman.com/posts/3742663632/
 https://blog.optionsuperman.com/posts/1564230905/
 https://blog.optionsuperman.com/posts/146350275/
@@ -5,4 +7,6 @@ https://blog.optionsuperman.com/tags/index.html
 https://blog.optionsuperman.com/categories/index.html
 https://blog.optionsuperman.com/
 https://blog.optionsuperman.com/tags/%E9%81%B8%E6%93%87%E6%AC%8A/
+https://blog.optionsuperman.com/tags/%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93/
+https://blog.optionsuperman.com/categories/%E9%81%B8%E6%93%87%E6%AC%8A%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93/
 https://blog.optionsuperman.com/categories/optionbasic/
