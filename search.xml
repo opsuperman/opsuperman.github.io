@@ -1,10 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>選擇權履約價種類</title>
+    <url>/posts/3742663632/</url>
+    <content><![CDATA[<h3 id="對買權來講"><a href="#對買權來講" class="headerlink" title="對買權來講"></a>對買權來講</h3><p>如果目前履約價高於對應的現貨標的價格則是  <strong>價外</strong></p>
+<p>如果目前履約價底於對應的現貨標的價格則是  <strong>價內</strong></p>
+<h3 id="對賣權來講"><a href="#對賣權來講" class="headerlink" title="對賣權來講"></a>對賣權來講</h3><p>如果目前履約價高於對應的現貨標的價格則是  <strong>價內</strong></p>
+<p>如果目前履約價底於對應的現貨標的價格則是  <strong>價外</strong></p>
+<p>而不管對買賣權，如果履約價接近現貨價格的位置則為 <strong>價平</strong></p>
+]]></content>
+      <categories>
+        <category>選擇權入門</category>
+      </categories>
+      <tags>
+        <tag>選擇權</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何程式交易選擇權-回測篇</title>
+    <url>/posts/options-trading-backtesting-guide/</url>
+    <content><![CDATA[<h1 id="🍬回測選擇權的作法"><a href="#🍬回測選擇權的作法" class="headerlink" title="🍬回測選擇權的作法"></a>🍬回測選擇權的作法</h1><p>選擇權一直是金融市場中一種重要的交易方式，可以做到不同於期貨這種單純線性的獲利方式，對於程式交易者來說，選擇權交易更是必須掌握的交易技能之一。</p>
+<p>過去程式交易者要做選擇權的程式交易門檻非常高，在回測上以及下單上，有太多的商品，以及複雜的資料需要提前去處理跟整併，包含多檔位需要抓價平，還有常常深價內外沒有資料，連續月選連續周選整合……等，而選擇權超人可以解決這個問題。</p>
+<blockquote>
+<p><font color=#008000>❤️‍🔥如何程式交易選擇權 ? 不如我們就用原本我們最熟悉的工具 Powerlanguage 以及 Multicharts。❤️‍🔥</font></p>
+</blockquote>
+<p>打開選擇權超人回測機。你只需要用原本就會的寫策略的方式，寫原本的策略。<br>寫完掛上輸出訊號的pla檔，然後透過選擇權超人回測機，他會自動轉成選擇權的回測。</p>
+<mark class="hl-label purple">如果你已經有台指期的策略，你甚至連任何一行程式都不需要寫</mark> ，只需選取你要甚麼動作，比如是要 Sell Call 還是 Buy Call 做價差甚麼...然後是價內還是價外哪一檔，接著按個按鈕就可以看到選擇權的回測結果數據。
+
+
+<p>我們的工具盡量讓你用原本就非常熟悉的Multicharts 以及powerlanguage，不用再去管選擇權的資料的處理，用原本的寫法寫好進出場，一鍵直接回測選擇權策略，再進而自動交易。</p>
+<h2 id="💈實際案例示範"><a href="#💈實際案例示範" class="headerlink" title="💈實際案例示範"></a>💈實際案例示範</h2><h3 id="1-準備好你的策略"><a href="#1-準備好你的策略" class="headerlink" title="1.準備好你的策略"></a>1.準備好你的策略</h3><p>首先寫好你的策略，比如我拿一隻過高就進場，破低就出場的簡單策略，powerlanguage語法如下 :</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/placode.png" alt="整個回測介面"></p>
+<p>我們先套在原始期貨上，看看績效曲線。</p>
+<p><img src="https://raw.githubusercontent.com/opsuperman/picx-images-hosting/master/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/mc_backtest.14ha816ibpy8.webp" alt="簡單策略回測" title="簡單策略回測"></p>
+<h3 id="2-加上powerlanguage的輸出訊號"><a href="#2-加上powerlanguage的輸出訊號" class="headerlink" title="2.加上powerlanguage的輸出訊號"></a>2.加上powerlanguage的輸出訊號</h3><p>掛上選擇權超人專屬的輸出交易明細訊號，input參數填入要輸出的資料夾跟策略名稱，以及要週選還是月選，記得回測要開啟細部回測(使用1分K)</p>
+<img src="https://raw.githubusercontent.com/opsuperman/picx-images-hosting/master/如何程式交易選擇權/image.4yal84q7tcg0.webp" width="90%" height="60%">
+
+
+<h3 id="3-開啟選擇權超人回測平台，選擇模式跟對應的檔位"><a href="#3-開啟選擇權超人回測平台，選擇模式跟對應的檔位" class="headerlink" title="3.開啟選擇權超人回測平台，選擇模式跟對應的檔位"></a>3.開啟選擇權超人回測平台，選擇模式跟對應的檔位</h3><p>打開選擇權超人回測平台，右上角點選新增，找到剛剛策略輸出的文字檔，就會顯示出下面對應的策略名稱跟參數可以去做設定</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E6%95%B4%E5%80%8B%E5%9B%9E%E6%B8%AC%E4%BB%8B%E9%9D%A2.png" alt="整個回測介面"></p>
+<p>接下來就是你可以簡單的把原始策略的進出場當作一個訊號，假設我們用剛剛的簡單策略當例子。</p>
+<p>剛剛的策略沒有空單，所以就勾選不動作。</p>
+<p>而每次多單進場我就buy call 價平，出場就把選擇權的call平倉。<br>新增剛剛輸出的檔案後，這邊可以自由設定交易成本，並且下拉選單選擇好對應的訊號然後輸入0也就是價平的位置，如下圖這樣選單選好</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%9B%9E%E6%B8%AC%E7%AD%96%E7%95%A5%E5%9C%961.png" alt="回測的介面"></p>
+<p>接著按下回測，稍等一下就可以看到回測結果以及各種交易數據了</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%9B%9E%E6%B8%AC%E7%B8%BE%E6%95%88%E6%9B%B2%E7%B7%9A1.png" alt="回測績效曲線1"></p>
+<p>你可以用自己寫的Multicharts策略訊號自由的切換不同選擇權策略，腳位，檔位….</p>
+<p>比如某一隻的Multicharts策略，想要他空單訊號時先不動作。</p>
+<p>而多單訊號時，<br>去buy call上面2檔，sell call上面5檔，buy put下面3檔，sell put上面2檔，</p>
+<p>並且，手續費單邊設定2.5點，那我就是一樣透過下拉選單選擇對應的動作，</p>
+<p>然後填入對應的檔位如下圖設定</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%9B%9B%E8%85%B3%E8%A8%AD%E5%AE%9A.png" alt="選擇權四腳策略設定"></p>
+<p>接著一樣按下回測，就可以去看回測結果的數據了</p>
+<p><strong>複雜多口數策略做法也一樣</strong></p>
+<p>下圖是一隻的卡了不同濾網，不同進出口數，也有各自停損方法的網格策略。</p>
+<p>多單初始單為1口，接下來用3口3口的方式加碼，空單初始單5口，接下來用1口1口的方式加碼，如圖所示</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%A4%9A%E5%8F%A3%E6%95%B8%E8%AE%8A%E7%A2%BC%E7%AD%96%E7%95%A5MC%E5%9C%96.png" alt="多口數變碼策略MC圖"></p>
+<p>如果我又想要多空用不同的選擇權價差進場，我想要用周選</p>
+<p>當MC訊號是多單時，buy call 上面1檔 並且 sell put上面3檔</p>
+<p>當MC訊號是空單時，buy put  價平 並且 sell put下面4檔</p>
+<p>做法也會先掛好選擇權超人的powerlanguage輸出訊號在圖表上，<br>然後去到回測平台上，下拉選單選對應的檔位如圖<br><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%A4%9A%E5%8F%A3%E6%95%B8%E5%9B%9E%E6%B8%AC%E8%A8%AD%E5%AE%9A.png" alt="多口數回測設定"></p>
+<p>一樣按下回測等他回測完後，就會有結果可以從瀏覽看了</p>
+<h3 id="4-回測報告介紹"><a href="#4-回測報告介紹" class="headerlink" title="4.回測報告介紹"></a>4.回測報告介紹</h3><p>當回測完成後，瀏覽按鈕按下去就會呈現回測的報告了，<br>以下介紹主要的資訊區域</p>
+<h4 id="績效概要"><a href="#績效概要" class="headerlink" title="績效概要"></a>績效概要</h4><p>績效概要，主要是可以查看交易常見的基本的績效數據</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E7%B8%BE%E6%95%88%E6%A6%82%E8%A6%81.png" alt="績效概要"></p>
+<h4 id="績效圖"><a href="#績效圖" class="headerlink" title="績效圖"></a>績效圖</h4><p>績效圖是可以點按是否同時或獨立顯示多單訊號或是空單訊號的部分，並且可以跟原始的MC直接輸出的期貨訊號去做績效的比較</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E7%B8%BE%E6%95%88%E5%9C%96.png" alt="績效圖"></p>
+<h4 id="年-x2F-月-x2F-日-單筆-損益"><a href="#年-x2F-月-x2F-日-單筆-損益" class="headerlink" title="年&#x2F;月&#x2F;日(單筆) 損益"></a>年&#x2F;月&#x2F;日(單筆) 損益</h4><p>整理成對應周期的交易資料跟損益，例如年損益如圖</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%B9%B4%E6%90%8D%E7%9B%8A.png" alt="年損益"></p>
+<h4 id="成交明細"><a href="#成交明細" class="headerlink" title="成交明細"></a>成交明細</h4><p>這邊有細部的價格可以讓你去做mc訊號對應選擇權訊號進出場的核對</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E6%88%90%E4%BA%A4%E6%98%8E%E7%B4%B0.png" alt="成交明細"></p>
+<h3 id="5-回測投資組合，與觀看多策略疊加報告"><a href="#5-回測投資組合，與觀看多策略疊加報告" class="headerlink" title="5.回測投資組合，與觀看多策略疊加報告"></a>5.回測投資組合，與觀看多策略疊加報告</h3><p>交易常常會需要知道多策略的回測結果，利用回測報告區塊，過去的回測結果都有自動存下來，可以隨時查看</p>
+<p>這邊還可以利用獨特的投組功能，讓不同腳位，不管是周選還月選，多還空訊號，<br>都只要勾選要疊加的策略按右上角的疊加按鈕後都可以自由疊加策略組合來看績效。</p>
+<p>我們勾選這邊要疊加的策略如下圖:</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%9B%9E%E6%B8%AC%E5%A0%B1%E5%91%8A%E5%8D%80%E5%A1%8A%E5%8B%BE%E9%81%B8%E7%96%8A%E5%8A%A0.png" alt="回測報告區塊勾選疊加"></p>
+<p>稍微等待後就會產生疊加起來的績效報告了</p>
+<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E7%96%8A%E5%8A%A0%E7%B8%BE%E6%95%88%E6%9B%B2%E7%B7%9A.png" alt="疊加績效曲線"></p>
+<p>以上就是利用multicharts搭配選擇權超人回測平台來回測選擇權的方法簡介</p>
+<h2 id="🔨設計自己的策略"><a href="#🔨設計自己的策略" class="headerlink" title="🔨設計自己的策略"></a>🔨設計自己的策略</h2><p><strong>接下來就是自己的道路了，發揮創意跟想像力吧</strong></p>
+<p>你可能可以…</p>
+<h4 id="1-針對選擇權開發專屬選擇權策略"><a href="#1-針對選擇權開發專屬選擇權策略" class="headerlink" title="1.針對選擇權開發專屬選擇權策略"></a>1.針對選擇權開發專屬選擇權策略</h4><p>比如專找一些高勝率的點去做買方，或是在時間價值流失比較快的地方比如快要結算去做賣方策略，或根據波動度，最大化的利用買賣方的優勢去做交易，想專作價差或是做跨式勒式….等都可以自由的設計。</p>
+<h4 id="2-讓交易的商品更多元化"><a href="#2-讓交易的商品更多元化" class="headerlink" title="2.讓交易的商品更多元化"></a>2.讓交易的商品更多元化</h4><p>如果只有交易台指，多了一個選擇權，是個可以針對盤勢有不一樣應對的工具，讓交易不再單一化。</p>
+<h4 id="3-讓原本的台指期策略直接優化提升🚀"><a href="#3-讓原本的台指期策略直接優化提升🚀" class="headerlink" title="3.讓原本的台指期策略直接優化提升🚀"></a>3.讓原本的台指期策略直接優化提升🚀</h4><p>用選擇權把你的原本台指策略風暴比拉高，或是某些策略改用選擇權打，這都是很值得花時間去研究的地方，也可以讓原本低勝率的台指期策略，利用選擇權特性，讓整體交易部位交易起來在被巴的時候的舒服程度做提升。</p>
+<h4 id="4-自動化的避險你需要的部位"><a href="#4-自動化的避險你需要的部位" class="headerlink" title="4.自動化的避險你需要的部位"></a>4.自動化的避險你需要的部位</h4><p>周末有時候留倉，或是有股票部位，都可以自動化的寫策略去用選擇權回測工具去分析如何避險。</p>
+<p><strong>想像力力就是你的超能力，動手回測來挖掘更多可行性吧</strong></p>
+<div class="btn-center" style="margin-top:60px;margin-bottom:60px;" >
+<a class="btn-beautify outline center blue larger" href="https://bit.ly/3Swrkbh" 
+  title="加入社群一起研究吧"><i class="far fa-hand-point-right"></i><span>加入社群一起研究吧</span></a>
+</div>
+
+
+<hr>
+<div class="note warning flat"><p>資料來源:期交所公開資料<br>免責申明:投資有賺有賠，僅分享量化研究與過去歷史統計數據，不保證資料或結果之正確性，量化策略也都很容易有時效性，內容和意見僅供參考，並不構成投資建議或勸誘，請勿直接串接下單。讀者應當自行進行完整的研究，並在做出任何投資決策前，理性評估，為自己負責。</p>
+</div>]]></content>
+      <categories>
+        <category>選擇權程式交易</category>
+      </categories>
+      <tags>
+        <tag>選擇權</tag>
+        <tag>程式交易</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>現貨，期貨，與選擇權差別</title>
+    <url>/posts/1564230905/</url>
+    <content><![CDATA[<p>在投資市場上，現貨、期貨和選擇權是三種常見的交易工具。它們各有不同的特點和適用場景，以下是它們的詳細解釋和區別：</p>
+<h2 id="現貨"><a href="#現貨" class="headerlink" title="現貨"></a>現貨</h2><p>現貨指的是實物資產的交易，購買者支付相應的貨款後，即可立即取得該資產所有權。例如，股票、商品、外匯等等都可以進行現貨交易。</p>
+<p>在現貨市場中，賣方和買方在交易時即時進行金錢和資產的交換，並且交易的價格是即時形成的市場價格。</p>
+<h2 id="期貨"><a href="#期貨" class="headerlink" title="期貨"></a>期貨</h2><p>期貨是一種交易工具，指的是在未來特定日期將某個資產買賣的契約。在期貨市場中，買賣雙方在經紀商或者交易所進行交易。</p>
+<p>為了確保買方和賣方的交易安全和履約保證，期貨市場會要求買方和賣方分別支付一定的保證金，可以不用全額買入。期貨契約有明確的到期日和條款，賣方需要在合約到期時向買方交付該資產或現金，或是以現金抵銷。</p>
+<p>期貨交易對於投資者來說，最大的好處在於它是一種杠桿式交易。只需要支付保證金，投資者就可以控制更大的市場風險。如果市場走勢符合投資者預期，投資者就可以獲得更高的投資回報，不過同樣的交易風險也較高。</p>
+<h2 id="選擇權"><a href="#選擇權" class="headerlink" title="選擇權"></a>選擇權</h2><p>選擇權是一種交易權利，購買者支付一定的費用，以獲得在特定日期或之前購買或出售資產的權利。</p>
+<p>與期貨不同的是，選擇權的買方不是必須履行合約，而是在合約到期前可以選擇是否履行。選擇權市場也有買賣雙方，買方為期權持有者，而賣方為期權出售者。買方支付權利金承受有限風險，賣方收取權利金，承受無限風險。</p>
+<p>選擇權交易如果是作為買方對於投資者來說，最大的好處在於它可以避免潛在的損失。如果市場走勢和投資者預期相反，投資者可以選擇不行使權利，從而避免損失。不過賣方就會相反。</p>
+<p>總的來說，現貨、期貨和選擇權都是常見的投資交易工具，其適用的場景和風險水平不同，投資者需要依照自身的需求來決定要用哪種工具。</p>
+]]></content>
+      <categories>
+        <category>選擇權入門</category>
+      </categories>
+      <tags>
+        <tag>選擇權</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>簡單長期Buy Call策略分析</title>
+    <url>/posts/just-buy-call/</url>
+    <content><![CDATA[<h2 id="長期Buy-Call策略的思考理路"><a href="#長期Buy-Call策略的思考理路" class="headerlink" title="長期Buy Call策略的思考理路"></a>長期Buy Call策略的思考理路</h2><p>今天，要來分析一個最簡單的策略 : 就是無腦長期buy call。</p>
+<p>這個策略也是剛接觸到選擇權的時候，第一個可以想到的最基本的策略。</p>
+<p>不過，當然這個策略有一個主要的前提，那就是， <span id="highlighted-text" style="font-size: 24px;font-weight: bold;">指數可以長期上漲!</span></p>
+<img src="https://github.com/opsuperman/picx-images-hosting/raw/master/簡單長期Buy-Call策略分析/指數長期上漲.529k55br13k0.webp" alt="指數長期上漲" title="指數長期上漲" style="width:60%">
+
+<p>如果指數可以長期上漲，長期的漲幅超過我所付出的權利金，那我每次都付出一點成本，就可以跟隨指數成長而獲得這個漲幅的差值收益</p>
+<p>並且下跌時，因為買call頂多歸零的特性，可以相較於單純持有現貨或是期貨，在指數大幅度下跌時有一種類似及時停損的感覺</p>
+<p>總之，這個策略就是利用了買方風險有限，加上預期指數會長期上漲的兩個特性而組合的</p>
+<h2 id="疑問🤔"><a href="#疑問🤔" class="headerlink" title="疑問🤔"></a>疑問🤔</h2><p>對於量化交易者，我們要做的就是，那到底回測起來狀況怎麼樣? 能實戰嗎?</p>
+<p>盤整會不會一值損失權利金?</p>
+<p>cp值有沒有真的比較高呢?</p>
+<p>就讓我們繼續看下去吧!</p>
+<h2 id="來寫策略吧"><a href="#來寫策略吧" class="headerlink" title="來寫策略吧"></a>來寫策略吧</h2><p>要回測這個策略，我們先打開我們的multicharts，並且在powerlanguage裡寫下如果沒有部位就買進，然後結算就平倉，都先用一口來模擬，交易成本用大家常用的單邊500元</p>
+<p>語法如下:</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E7%B0%A1%E5%96%AE%E9%95%B7%E6%9C%9FBuy-Call%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90/pla.6badinb0fhg0.webp" alt="powerlanguage語法" title="powerlanguage語法"></p>
+<p>我們來看一下他的績效報告:</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E7%B0%A1%E5%96%AE%E9%95%B7%E6%9C%9FBuy-Call%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90/spsreport.2vfj4v7ur2o0.webp" alt="長期買進績效報告" title="長期買進績效報告"></p>
+<p>我們來看一下他的績效曲線:</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E7%B0%A1%E5%96%AE%E9%95%B7%E6%9C%9FBuy-Call%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90/ecdd.1c7jk3o29mo0.webp" alt="長期買進績效曲線" title="長期買進績效曲線"></p>
+<p>從上面的績效曲線可以看出，從2012到2023年確實指數是有再向上，</p>
+<p>在下跌的時候比如2015,2018,2020 三月,2022年</p>
+<p>都有比較大的回檔，而2022年應該蠻不舒服的</p>
+<h2 id="來看看選擇權"><a href="#來看看選擇權" class="headerlink" title="來看看選擇權"></a>來看看選擇權</h2><p>要回測選擇權首先我們先在MC訊號加上選擇權超人的輸出訊號:</p>
+<p>我自己習慣掛兩個，一個參數輸出週選，另一個輸出月選</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E7%B0%A1%E5%96%AE%E9%95%B7%E6%9C%9FBuy-Call%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90/plaoutput.kcsahjf9cgw.webp" alt="選擇權超人輸出訊號" title="選擇權超人輸出訊號"></p>
+<p>然後在回測面板上選buy call，檔位選0，也就是每次都buy call在價平，這樣當MC台指期貨訊號買進一口時也就會對應買進一口call的，平倉也會跟著平倉，如下圖所示，然後按下回測。</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E7%B0%A1%E5%96%AE%E9%95%B7%E6%9C%9FBuy-Call%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90/bt.5ctfm0l92do0.webp" alt="選擇權超人回測面板" title="選擇權超人回測面板"></p>
+<p>看看月選的回測績效曲線，並且跟原始的期貨比較一下</p>
+<h3 id="月選回測結果"><a href="#月選回測結果" class="headerlink" title="月選回測結果"></a>月選回測結果</h3><p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E7%B0%A1%E5%96%AE%E9%95%B7%E6%9C%9FBuy-Call%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90/%E6%9C%88%E9%81%B8%E7%B8%BE%E6%95%88%E6%9B%B2%E7%B7%9A.720gtlowwrs0.webp" alt="月選回測績效曲線" title="月選回測績效曲線"></p>
+<p>從圖中可以看出確實有跟預想的接近，也就是因為每次都要付出權利金，所以上漲的話賺的應該比期貨少，連續大跌時，也賠的少一點，盤整時可能期貨沒賠他還多賠</p>
+<p>我們挑的兩筆交易來看看buy call的優缺點</p>
+<p>先看看buy call的缺點:</p>
+<p>找了某個月，盤勢在一段上下來回的走勢後趨於剛開倉的價格，最終這個月期貨總結是小小小漲的狀況中，如圖</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E7%B0%A1%E5%96%AE%E9%95%B7%E6%9C%9FBuy-Call%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90/201303%E5%9C%96%E8%A1%A8.6k6rzgxtx6o0.webp" alt="201303圖表" title="201303圖表"></p>
+<p>台指這筆單賺了六點的情況下，buy call賠了101點</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E7%B0%A1%E5%96%AE%E9%95%B7%E6%9C%9FBuy-Call%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90/201303%E6%AF%94%E8%BC%83.5w4l80ugtq80.webp" alt="201303比較" title="201303比較"></p>
+<p>再來看看buy call的優點:</p>
+<p>2020三月的時候的大跌，這時候應該就是可以贏過期貨的時候</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E7%B0%A1%E5%96%AE%E9%95%B7%E6%9C%9FBuy-Call%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90/202003%E5%9C%96%E8%A1%A8.4kz9m22vpv60.webp" alt="202003圖表" title="202003圖表"></p>
+<p>這段大跌，台指期賠了2508點，bay call 只賠一百多點</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E7%B0%A1%E5%96%AE%E9%95%B7%E6%9C%9FBuy-Call%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90/202003%E6%AF%94%E8%BC%83.62qrv1fmz100.webp" alt="202003比較" title="202003比較"></p>
+<p>來看看數據:</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E7%B0%A1%E5%96%AE%E9%95%B7%E6%9C%9FBuy-Call%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90/%E6%9C%88%E9%81%B8%E7%B8%BE%E6%95%88%E6%A6%82%E8%A6%81.6t0f78eowok0.webp" alt="月選交易績效概要" title="月選交易績效概要"></p>
+<p>如果比較風暴比，比起期貨有稍稍好一點，但當然這就取決於你回測的區間了，但以2012年底到2023年，雖然獲利比不上單純用期貨來做，但風暴比有稍微好一點，在大跌的時候的<strong>心態也會好一點</strong></p>
+<p>因此對於要做這樣buy call的月選策略，就是自己認知到他的優缺點哪個是你想要的，哪個是你不要的，不同的盤勢他帶來的效果是甚麼，這個效果是不是你要的</p>
+<h3 id="如果用週選做呢"><a href="#如果用週選做呢" class="headerlink" title="如果用週選做呢?"></a>如果用週選做呢?</h3><p>因為週選，那我們就要每周都進行換倉的動作，用選擇權超人回測平台的輸出，他很方便每周結算就自動換倉，模擬我們要的結果。</p>
+<p>先來看都不加交易成本的:</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E7%B0%A1%E5%96%AE%E9%95%B7%E6%9C%9FBuy-Call%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90/%E9%80%B1%E9%81%B8%E7%84%A1%E4%BA%A4%E6%98%93%E6%88%90%E6%9C%AC.6ld7r3o18uo0.webp" alt="週選回測績效曲線" title="週選回測績效曲線"></p>
+<p>相比期貨以及月選，感覺的出，權利金的成本付出多蠻多的….</p>
+<p>然而，因為換倉頻率比較高，每次換倉也都會有交易成本</p>
+<p>為了比較，會把期貨也做同樣的動作，我們來看看每周都換倉，也加了交易成本後的回測曲線</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E7%B0%A1%E5%96%AE%E9%95%B7%E6%9C%9FBuy-Call%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90/%E9%80%B1%E9%81%B8%E5%8A%A0%E4%B8%8A%E4%BA%A4%E6%98%93%E6%88%90%E6%9C%AC.1cr1er6byjkw.webp" alt="週選含交易成本回測績效曲線" title="週選含交易成本回測績效曲線"></p>
+<p>再來看看績效概要:</p>
+<p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E7%B0%A1%E5%96%AE%E9%95%B7%E6%9C%9FBuy-Call%E7%AD%96%E7%95%A5%E5%88%86%E6%9E%90/%E9%80%B1%E9%81%B8%E7%B8%BE%E6%95%88%E6%A6%82%E8%A6%81.43q22o9bpvy0.webp" alt="週選含交易成本績效概要" title="週選含交易成本績效概要"></p>
+<p>這樣子一比較，似乎就會感覺數據上，不管獲利 還是風暴比，</p>
+<p>用週選無腦每周BUY CALL，雖然可以獲利，但不太像是個可以實戰的策略….</p>
+<p>月選稍微好一點，但要直接實戰，可能都還是要在優化…</p>
+<p>以上分享大概就到這邊</p>
+<p>這就是量化回測的好處，市場充斥著許多老師，以及許多聲音高談闊論可以怎麼交易，唯有實際用數據回測，才能知道到底實際這樣做的情況是怎麼樣</p>
+<p>選擇權超人回測平台，讓你可以用MULTICHARTS 輕鬆回測選擇權策略，歡迎加入群組跟大家做進一步的交流瞜!</p>
+<div class="btn-center" style="margin-top:80px;margin-bottom:80px;" >
+<a class="btn-beautify outline center blue larger" href="https://bit.ly/3Swrkbh" 
+  title="立即加入line群與高手們交流"><i class="far fa-hand-point-right"></i><span>立即加入line群與高手們交流</span></a>
+</div>
+
+
+<hr>
+<div class="note warning flat"><p>資料來源:期交所公開資料<br>免責申明:投資有賺有賠，僅分享量化研究與過去歷史統計數據，不保證資料或結果之正確性，量化策略也都很容易有時效性，內容和意見僅供參考，並不構成投資建議或勸誘，請勿直接串接下單。讀者應當自行進行完整的研究，並在做出任何投資決策前，理性評估，為自己負責。</p>
+</div>]]></content>
+      <categories>
+        <category>選擇權策略靈感分享</category>
+      </categories>
+      <tags>
+        <tag>選擇權</tag>
+        <tag>量化策略</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>選擇權策略開發-缺乏歷史價格的挑戰</title>
     <url>/posts/option-historical-prices-problem/</url>
     <content><![CDATA[<h2 id="🤔歷史資料缺失問題"><a href="#🤔歷史資料缺失問題" class="headerlink" title="🤔歷史資料缺失問題"></a>🤔歷史資料缺失問題</h2><p>在做量化策略的時候，歷史資料一直是在回測上很重要的基礎，但當你爬了期交所公開資料下來準備寫選擇權交易策略時，會發現一個令人心碎的事實：歷史數據中很常都沒有價格！</p>
-<p>選擇權價格受多種因素影響，包括履約價、到期日、市場波動性…等。但在量化分析上最令人頭疼的是，並非所有的選擇權都像熱門股票那樣，時時刻刻都有買賣。有些選擇權可能只有零星的交易，或者根本沒有交易。這就是為什麼，當你試圖撈取歷史數據時，會發現某些時段的數據是缺失的。這樣的情況下，如何做選擇權的回測呢？在這篇文章中，我們會深入探討這一棘手的問題，並揭示我們是如何一步步解決它的。</p>
+<p>選擇權價格受多種因素影響，包括履約價、到期日、市場波動性…等。</p>
+<p>但在量化分析上最令人頭疼的是，並非所有的選擇權都像熱門股票那樣，時時刻刻都有買賣。</p>
+<p>有些選擇權可能只有零星的交易，或者根本沒有交易。這就是為什麼，當你試圖撈取歷史數據時，會發現某些時段的數據是缺失的。</p>
+<p>這樣的情況下，如何做選擇權的回測呢？在這篇文章中，我們會深入探討這一棘手的問題，並揭示我們是如何一步步解決它的。</p>
 <h2 id="選擇權策略案例"><a href="#選擇權策略案例" class="headerlink" title="選擇權策略案例"></a>選擇權策略案例</h2><blockquote>
 <p>舉個實例: 假設你有一隻一分K月選策略想在2021&#x2F;11&#x2F;22 23:17:00 用履約價18400進場sell put，並且在2021&#x2F;11&#x2F;23 00:57:00出場</p>
 </blockquote>
@@ -92,125 +297,16 @@
 <p>像下圖雖然我做出一隻風報比不錯的策略，但是估計值的比例高到82.2%，表示我進出場可能使用到非常多的深度價內或價外的價格，因此我會知道他回測出來的績效可能要打很大的折扣，這支策略可能不那麼穩定。</p>
 <p><img src="https://github.com/opsuperman/picx-images-hosting/raw/master/%E9%81%B8%E6%93%87%E6%AC%8A%E7%AD%96%E7%95%A5%E9%96%8B%E7%99%BC-%E7%BC%BA%E4%B9%8F%E6%AD%B7%E5%8F%B2%E5%83%B9%E6%A0%BC%E7%9A%84%E6%8C%91%E6%88%B0/%E6%8E%A1%E7%94%A8%E7%90%86%E8%AB%96%E5%83%B9%E6%AF%94%E4%BE%8B.flk1stkm4qg.webp" alt="採用理論價比例" title="採用理論價比例"></p>
 <h2 id="歷史回測的新理解-理論價格的藝術與科學"><a href="#歷史回測的新理解-理論價格的藝術與科學" class="headerlink" title="歷史回測的新理解-理論價格的藝術與科學"></a>歷史回測的新理解-理論價格的藝術與科學</h2><p>做策略的開發猶如從歷史資料中尋找智慧與寶藏。在這個過程中，像極了對過去考古題的解讀與探索，並且期待透過過往的歷史經驗，預測未知的未來。</p>
-<p>在期貨或股票的回測中，量化開發者很習慣要求資料的完整性，不允許缺失或不確定性。因為資料的準確性是量化分析成功的關鍵之一。然而，當我們深入選擇權的世界，這種想法卻受到了挑戰。在這裡，歷史一旦成為過去，某些資料的缺失是無法逆轉的事實。面對這樣的現實，我們得學會自己去設計與填補那些空白，創造一個完整的歷史理論資料。</p>
-<p>理論價格，從本質上來看，就是一種估計值，它與實際價格之間存在著固有的誤差。這誤差的大小，也是可以深入研究的主題了。沒有絕對的答案，只有逼近真實的技巧。在此，我們也誠摯地歡迎所有的高手，一同交流與指教有沒有更準確的作法，或者對我們計算出來的價格提出質疑，讓我們有更好的改進空間，也可以一起探討如何能更加接近那真實的價格之方法。</p>
+<p>在期貨或股票的回測中，量化開發者很習慣要求資料的完整性，不允許缺失或不確定性。</p>
+<p>因為資料的準確性是量化分析成功的關鍵之一。然而，當我們深入選擇權的世界，這種想法卻受到了挑戰。在這裡，歷史一旦成為過去，某些資料的缺失是無法逆轉的事實。面對這樣的現實，我們得學會自己去設計與填補那些空白，創造一個完整的歷史理論資料。</p>
+<p>理論價格，從本質上來看，就是一種估計值，它與實際價格之間存在著固有的誤差。這誤差的大小，也是可以深入研究的主題了。沒有絕對的答案，只有逼近真實的技巧。</p>
+<p>在此，我們也誠摯地歡迎所有的高手，一同交流與指教有沒有更準確的作法，或者對我們計算出來的價格提出質疑，讓我們有更好的改進空間，也可以一起探討如何能更加接近那真實的價格之方法。</p>
 <h2 id="總結"><a href="#總結" class="headerlink" title="總結:"></a>總結:</h2><p>在進行選擇權策略的開發時，<font color=#008000>盡量注意估計值比例，避開剛開盤或是冷門交易時間的進出場</font>，這樣回測起來會比較貼近真實歷史價格狀況。</p>
 <p>如果你不想處理繁瑣的資料可以使用選擇權超人的回測工具，此工具已經為你解決了資料缺失的困擾，且巧妙地填補了各種缺失的價格，並且讓你輕鬆用multicharts原本開發台指期交易策略的方式，就可以回測多種選擇權策略</p>
 <div class="btn-center" style="margin-top:60px;margin-bottom:60px;" >
 <a class="btn-beautify outline center blue larger" href="https://bit.ly/3Swrkbh" 
   title="歡迎加入我們的交流討論群"><i class="far"></i><span>歡迎加入我們的交流討論群</span></a>
 </div>
-
-<hr>
-<div class="note warning flat"><p>資料來源:期交所公開資料<br>免責申明:投資有賺有賠，僅分享量化研究與過去歷史統計數據，不保證資料或結果之正確性，量化策略也都很容易有時效性，內容和意見僅供參考，並不構成投資建議或勸誘，請勿直接串接下單。讀者應當自行進行完整的研究，並在做出任何投資決策前，理性評估，為自己負責。</p>
-</div>]]></content>
-      <categories>
-        <category>選擇權程式交易</category>
-      </categories>
-      <tags>
-        <tag>選擇權</tag>
-        <tag>程式交易</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>現貨，期貨，與選擇權差別</title>
-    <url>/posts/1564230905/</url>
-    <content><![CDATA[<p>在投資市場上，現貨、期貨和選擇權是三種常見的交易工具。它們各有不同的特點和適用場景，以下是它們的詳細解釋和區別：</p>
-<h2 id="現貨"><a href="#現貨" class="headerlink" title="現貨"></a>現貨</h2><p>現貨指的是實物資產的交易，購買者支付相應的貨款後，即可立即取得該資產所有權。例如，股票、商品、外匯等等都可以進行現貨交易。</p>
-<p>在現貨市場中，賣方和買方在交易時即時進行金錢和資產的交換，並且交易的價格是即時形成的市場價格。</p>
-<h2 id="期貨"><a href="#期貨" class="headerlink" title="期貨"></a>期貨</h2><p>期貨是一種交易工具，指的是在未來特定日期將某個資產買賣的契約。在期貨市場中，買賣雙方在經紀商或者交易所進行交易。</p>
-<p>為了確保買方和賣方的交易安全和履約保證，期貨市場會要求買方和賣方分別支付一定的保證金，可以不用全額買入。期貨契約有明確的到期日和條款，賣方需要在合約到期時向買方交付該資產或現金，或是以現金抵銷。</p>
-<p>期貨交易對於投資者來說，最大的好處在於它是一種杠桿式交易。只需要支付保證金，投資者就可以控制更大的市場風險。如果市場走勢符合投資者預期，投資者就可以獲得更高的投資回報，不過同樣的交易風險也較高。</p>
-<h2 id="選擇權"><a href="#選擇權" class="headerlink" title="選擇權"></a>選擇權</h2><p>選擇權是一種交易權利，購買者支付一定的費用，以獲得在特定日期或之前購買或出售資產的權利。</p>
-<p>與期貨不同的是，選擇權的買方不是必須履行合約，而是在合約到期前可以選擇是否履行。選擇權市場也有買賣雙方，買方為期權持有者，而賣方為期權出售者。買方支付權利金承受有限風險，賣方收取權利金，承受無限風險。</p>
-<p>選擇權交易如果是作為買方對於投資者來說，最大的好處在於它可以避免潛在的損失。如果市場走勢和投資者預期相反，投資者可以選擇不行使權利，從而避免損失。不過賣方就會相反。</p>
-<p>總的來說，現貨、期貨和選擇權都是常見的投資交易工具，其適用的場景和風險水平不同，投資者需要依照自身的需求來決定要用哪種工具。</p>
-]]></content>
-      <categories>
-        <category>選擇權入門</category>
-      </categories>
-      <tags>
-        <tag>選擇權</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>選擇權履約價種類</title>
-    <url>/posts/3742663632/</url>
-    <content><![CDATA[<h3 id="對買權來講"><a href="#對買權來講" class="headerlink" title="對買權來講"></a>對買權來講</h3><p>如果目前履約價高於對應的現貨標的價格則是  <strong>價外</strong></p>
-<p>如果目前履約價底於對應的現貨標的價格則是  <strong>價內</strong></p>
-<h3 id="對賣權來講"><a href="#對賣權來講" class="headerlink" title="對賣權來講"></a>對賣權來講</h3><p>如果目前履約價高於對應的現貨標的價格則是  <strong>價內</strong></p>
-<p>如果目前履約價底於對應的現貨標的價格則是  <strong>價外</strong></p>
-<p>而不管對買賣權，如果履約價接近現貨價格的位置則為 <strong>價平</strong></p>
-]]></content>
-      <categories>
-        <category>選擇權入門</category>
-      </categories>
-      <tags>
-        <tag>選擇權</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何程式交易選擇權-回測篇</title>
-    <url>/posts/options-trading-backtesting-guide/</url>
-    <content><![CDATA[<h1 id="🍬回測選擇權的作法"><a href="#🍬回測選擇權的作法" class="headerlink" title="🍬回測選擇權的作法"></a>🍬回測選擇權的作法</h1><p>選擇權一直是金融市場中一種重要的交易方式，可以做到不同於期貨這種單純線性的獲利方式，對於程式交易者來說，選擇權交易更是必須掌握的交易技能之一。</p>
-<p>過去程式交易者要做選擇權的程式交易門檻非常高，在回測上以及下單上，有太多的商品，以及複雜的資料需要提前去處理跟整併，包含多檔位需要抓價平，還有常常深價內外沒有資料，連續月選連續周選整合……等，而選擇權超人可以解決這個問題。</p>
-<blockquote>
-<p><font color=#008000>❤️‍🔥如何程式交易選擇權 ? 不如我們就用原本我們最熟悉的工具 Powerlanguage 以及 Multicharts。❤️‍🔥</font></p>
-</blockquote>
-<p>打開選擇權超人回測機。你只需要用原本就會的寫策略的方式，寫原本的策略。<br>寫完掛上輸出訊號的pla檔，然後透過選擇權超人回測機，他會自動轉成選擇權的回測。<mark class="hl-label purple">如果你已經有台指期的策略，你甚至連任何一行程式都不需要寫</mark> ，只需選取你要甚麼動作，比如是要 Sell Call 還是 Buy Call 做價差甚麼…然後是價內還是價外哪一檔，接著按個按鈕就可以看到選擇權的回測結果數據。</p>
-<p>我們的工具盡量讓你用原本就非常熟悉的Multicharts 以及powerlanguage，不用再去管選擇權的資料的處理，用原本的寫法寫好進出場，一鍵直接回測選擇權策略，再進而自動交易。</p>
-<h2 id="💈實際案例示範"><a href="#💈實際案例示範" class="headerlink" title="💈實際案例示範"></a>💈實際案例示範</h2><h3 id="1-準備好你的策略"><a href="#1-準備好你的策略" class="headerlink" title="1.準備好你的策略"></a>1.準備好你的策略</h3><p>首先寫好你的策略，比如我拿一隻過高就進場，破低就出場的簡單策略，powerlanguage語法如下 :</p>
-<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/placode.png" alt="整個回測介面"></p>
-<p>我們先套在原始期貨上，看看績效曲線。<br><img src="https://raw.githubusercontent.com/opsuperman/picx-images-hosting/master/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/mc_backtest.14ha816ibpy8.webp" alt="簡單策略回測" title="簡單策略回測"></p>
-<h3 id="2-加上powerlanguage的輸出訊號"><a href="#2-加上powerlanguage的輸出訊號" class="headerlink" title="2.加上powerlanguage的輸出訊號"></a>2.加上powerlanguage的輸出訊號</h3><p>掛上選擇權超人專屬的輸出交易明細訊號，input參數填入要輸出的資料夾跟策略名稱，以及要週選還是月選，記得回測要開啟細部回測(使用1分K)</p>
-<img src="https://raw.githubusercontent.com/opsuperman/picx-images-hosting/master/如何程式交易選擇權/image.4yal84q7tcg0.webp" width="90%" height="60%">
-
-
-<h3 id="3-開啟選擇權超人回測平台，選擇模式跟對應的檔位"><a href="#3-開啟選擇權超人回測平台，選擇模式跟對應的檔位" class="headerlink" title="3.開啟選擇權超人回測平台，選擇模式跟對應的檔位"></a>3.開啟選擇權超人回測平台，選擇模式跟對應的檔位</h3><p>打開選擇權超人回測平台，右上角點選新增，找到剛剛策略輸出的文字檔，就會顯示出下面對應的策略名稱跟參數可以去做設定<br><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E6%95%B4%E5%80%8B%E5%9B%9E%E6%B8%AC%E4%BB%8B%E9%9D%A2.png" alt="整個回測介面"></p>
-<p>接下來就是你可以簡單的把原始策略的進出場當作一個訊號，假設我們用剛剛的簡單策略當例子，<br>剛剛的策略沒有空單所以就勾選不動作，而每次多單進場我就buy call 價平，出場就把選擇權的call平倉。<br>新增剛剛輸出的檔案後，這邊可以自由設定交易成本，並且下拉選單選擇好對應的訊號然後輸入0也就是價平的位置，如下圖這樣選單選好</p>
-<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%9B%9E%E6%B8%AC%E7%AD%96%E7%95%A5%E5%9C%961.png" alt="回測的介面"></p>
-<p>接著按下回測，稍等一下就可以看到回測結果以及各種交易數據了</p>
-<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%9B%9E%E6%B8%AC%E7%B8%BE%E6%95%88%E6%9B%B2%E7%B7%9A1.png" alt="回測績效曲線1"></p>
-<p>你可以用自己寫的Multicharts策略訊號自由的切換不同選擇權策略，腳位，檔位….</p>
-<p>比如某一隻的Multicharts策略，想要他空單訊號時先不動作，而多單訊號時<br>去buy call上面2檔，sell call上面5檔，buy put下面3檔，sell put上面2檔，並且手續費單邊設定2.5點，那我就是一樣透過下拉選單選擇對應的動作，然後填入對應的檔位如下圖設定</p>
-<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%9B%9B%E8%85%B3%E8%A8%AD%E5%AE%9A.png" alt="選擇權四腳策略設定"></p>
-<p>接著一樣按下回測，就可以去看回測結果的數據了</p>
-<p><strong>複雜多口數策略做法也一樣</strong></p>
-<p>下圖是一隻的卡了不同濾網，不同進出口數，也有各自停損方法的網格策略，多單初始單為1口，接下來用3口3口的方式加碼，空單初始單5口，接下來用1口1口的方式加碼，如圖所示</p>
-<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%A4%9A%E5%8F%A3%E6%95%B8%E8%AE%8A%E7%A2%BC%E7%AD%96%E7%95%A5MC%E5%9C%96.png" alt="多口數變碼策略MC圖"></p>
-<p>如果我又想要多空用不同的選擇權價差進場，我想要用周選</p>
-<p>當MC訊號是多單時，buy call 上面1檔 並且 sell put上面3檔</p>
-<p>當MC訊號是空單時，buy put  價平 並且 sell put下面4檔</p>
-<p>做法也會先掛好選擇權超人的powerlanguage輸出訊號在圖表上，<br>然後去到回測平台上，下拉選單選對應的檔位如圖<br><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%A4%9A%E5%8F%A3%E6%95%B8%E5%9B%9E%E6%B8%AC%E8%A8%AD%E5%AE%9A.png" alt="多口數回測設定"></p>
-<p>一樣按下回測等他回測完後，就會有結果可以從瀏覽看了</p>
-<h3 id="4-回測報告介紹"><a href="#4-回測報告介紹" class="headerlink" title="4.回測報告介紹"></a>4.回測報告介紹</h3><p>當回測完成後，瀏覽按鈕按下去就會呈現回測的報告了，<br>以下介紹主要的資訊區域</p>
-<h4 id="績效概要"><a href="#績效概要" class="headerlink" title="績效概要"></a>績效概要</h4><p>績效概要，主要是可以查看交易常見的基本的績效數據</p>
-<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E7%B8%BE%E6%95%88%E6%A6%82%E8%A6%81.png" alt="績效概要"></p>
-<h4 id="績效圖"><a href="#績效圖" class="headerlink" title="績效圖"></a>績效圖</h4><p>績效圖是可以點按是否同時或獨立顯示多單訊號或是空單訊號的部分，並且可以跟原始的MC直接輸出的期貨訊號去做績效的比較</p>
-<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E7%B8%BE%E6%95%88%E5%9C%96.png" alt="績效圖"></p>
-<h4 id="年-x2F-月-x2F-日-單筆-損益"><a href="#年-x2F-月-x2F-日-單筆-損益" class="headerlink" title="年&#x2F;月&#x2F;日(單筆) 損益"></a>年&#x2F;月&#x2F;日(單筆) 損益</h4><p>整理成對應周期的交易資料跟損益，例如年損益如圖</p>
-<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%B9%B4%E6%90%8D%E7%9B%8A.png" alt="年損益"></p>
-<h4 id="成交明細"><a href="#成交明細" class="headerlink" title="成交明細"></a>成交明細</h4><p>這邊有細部的價格可以讓你去做mc訊號對應選擇權訊號進出場的核對</p>
-<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E6%88%90%E4%BA%A4%E6%98%8E%E7%B4%B0.png" alt="成交明細"></p>
-<h3 id="5-回測投資組合，與觀看多策略疊加報告"><a href="#5-回測投資組合，與觀看多策略疊加報告" class="headerlink" title="5.回測投資組合，與觀看多策略疊加報告"></a>5.回測投資組合，與觀看多策略疊加報告</h3><p>交易常常會需要知道多策略的回測結果，利用回測報告區塊，過去的回測結果都有自動存下來，可以隨時查看</p>
-<p>這邊還可以利用獨特的投組功能，讓不同腳位，不管是周選還月選，多還空訊號，<br>都只要勾選要疊加的策略按右上角的疊加按鈕後都可以自由疊加策略組合來看績效。</p>
-<p>我們勾選這邊要疊加的策略如下圖:</p>
-<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E5%9B%9E%E6%B8%AC%E5%A0%B1%E5%91%8A%E5%8D%80%E5%A1%8A%E5%8B%BE%E9%81%B8%E7%96%8A%E5%8A%A0.png" alt="回測報告區塊勾選疊加"></p>
-<p>稍微等待後就會產生疊加起來的績效報告了</p>
-<p><img src="/../images/%E5%A6%82%E4%BD%95%E7%A8%8B%E5%BC%8F%E4%BA%A4%E6%98%93%E9%81%B8%E6%93%87%E6%AC%8A/%E7%96%8A%E5%8A%A0%E7%B8%BE%E6%95%88%E6%9B%B2%E7%B7%9A.png" alt="疊加績效曲線"></p>
-<p>以上就是利用multicharts搭配選擇權超人回測平台來回測選擇權的方法簡介</p>
-<h2 id="🔨設計自己的策略"><a href="#🔨設計自己的策略" class="headerlink" title="🔨設計自己的策略"></a>🔨設計自己的策略</h2><p><strong>接下來就是自己的道路了，發揮創意跟想像力吧</strong></p>
-<p>你可能可以…</p>
-<h4 id="1-針對選擇權開發專屬選擇權策略"><a href="#1-針對選擇權開發專屬選擇權策略" class="headerlink" title="1.針對選擇權開發專屬選擇權策略"></a>1.針對選擇權開發專屬選擇權策略</h4><p>比如專找一些高勝率的點去做買方，或是在時間價值流失比較快的地方比如快要結算去做賣方策略，或根據波動度，最大化的利用買賣方的優勢去做交易，想專作價差或是做跨式勒式….等都可以自由的設計。</p>
-<h4 id="2-讓交易的商品更多元化"><a href="#2-讓交易的商品更多元化" class="headerlink" title="2.讓交易的商品更多元化"></a>2.讓交易的商品更多元化</h4><p>如果只有交易台指，多了一個選擇權，是個可以針對盤勢有不一樣應對的工具，讓交易不再單一化。</p>
-<h4 id="3-讓原本的台指期策略直接優化提升🚀"><a href="#3-讓原本的台指期策略直接優化提升🚀" class="headerlink" title="3.讓原本的台指期策略直接優化提升🚀"></a>3.讓原本的台指期策略直接優化提升🚀</h4><p>用選擇權把你的原本台指策略風暴比拉高，或是某些策略改用選擇權打，這都是很值得花時間去研究的地方，也可以讓原本低勝率的台指期策略，利用選擇權特性，讓整體交易部位交易起來在被巴的時候的舒服程度做提升。</p>
-<h4 id="4-自動化的避險你需要的部位"><a href="#4-自動化的避險你需要的部位" class="headerlink" title="4.自動化的避險你需要的部位"></a>4.自動化的避險你需要的部位</h4><p>周末有時候留倉，或是有股票部位，都可以自動化的寫策略去用選擇權回測工具去分析如何避險。</p>
-<p><strong>想像力力就是你的超能力，動手回測來挖掘更多可行性吧</strong></p>
-<div class="btn-center" style="margin-top:60px;margin-bottom:60px;" >
-<a class="btn-beautify outline center blue larger" href="https://bit.ly/3Swrkbh" 
-  title="加入社群一起研究吧"><i class="far fa-hand-point-right"></i><span>加入社群一起研究吧</span></a>
-</div>
-
 
 <hr>
 <div class="note warning flat"><p>資料來源:期交所公開資料<br>免責申明:投資有賺有賠，僅分享量化研究與過去歷史統計數據，不保證資料或結果之正確性，量化策略也都很容易有時效性，內容和意見僅供參考，並不構成投資建議或勸誘，請勿直接串接下單。讀者應當自行進行完整的研究，並在做出任何投資決策前，理性評估，為自己負責。</p>
